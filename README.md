@@ -24,9 +24,14 @@ Description
 
 ***-v, --version*** - Output version information
 
-Usage examples are in run.bat file. Recommended translation scheme: 
-1: run.bat decode
-2: modify decoded text groups
+Usage examples are in run.bat file. Recommended translation scheme:  
+  
+1: run.bat decode  
+  
+2: modify decoded text groups  
+  
 3: run.bat encode
+  
 4: run.bat paste
+  
 5: go to 2
