@@ -24,7 +24,7 @@ Description
 
 ***-v, --version*** - Output version information
 
-Usage examples are in run.bat file. Recommended translation scheme:  
+See additional files in release archive. Usage examples are in run.bat file. Recommended translation scheme:  
   
 1: run.bat decode  
   
