@@ -1,16 +1,32 @@
 hUninvited
 =========
-NES Uninvited text decompressor. Game uses variable bitwidth encoding scheme for text. This tool can decode it.
+NES Uninvited text tool. Game uses Golomb coding for text. This tool can work with it.
 
 
-Usage:
+Synopsis:
 ```
-hUninvited [-d | -b] file_name <offset> | <file_name ptr_offset ptr_count base_offset>
+huninvited [-d | -s | -i | -e] arguments
 ```
+  
+Description
 
+***-d, --decode*** input_file index_map_offset text_offset  - Decode one message from ROM at given offset
 
-***-d*** - Decode one message from ROM at given offset. Input ROM name and offset in it must be specified: -d file_name offset
+***-s, --script*** input_file index_map_offset pointer_table_offset pointer_count text_base_offset - Batch decode script from ROM by pointer table
 
-***-b*** - Batch decode script by pointer table. Input ROM, pointer table location, pointers count and base offset for text  must be specified: -b file_name ptr_offset ptr_count base_offset
+***-i, --index*** input_file... - Build binary index table from given decoded binary files
 
-Usage examples are in .bat file.
+***-e, --encode*** input_file index_table pointer_table_start_RAM_address - Encode decoded binary file with given binary index table file
+
+***-o[FILE], --output[=FILE]*** - Output to binary FILE; if option is not specified, -d and -s are output to stdout
+
+***-h, --help*** - Display help
+
+***-v, --version*** - Output version information
+
+Usage examples are in run.bat file. Recommended translation scheme: 
+1: run.bat decode
+2: modify decoded text groups
+3: run.bat encode
+4: run.bat paste
+5: go to 2
