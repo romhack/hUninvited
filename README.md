@@ -24,14 +24,23 @@ Description
 
 ***-v, --version*** - Output version information
 
-See additional files in release archive. Usage examples are in run.bat file. Recommended translation scheme:  
+See additional files in [release](https://github.com/romhack/hUninvited/releases/latest) archive. Usage examples are in run.bat file. Recommended translation scheme:  
+
+1. run.bat decode  
   
-1: run.bat decode  
+2. modify decoded text groups  
   
-2: modify decoded text groups  
+3. run.bat encode
   
-3: run.bat encode
+4. run.bat paste
   
-4: run.bat paste
-  
-5: go to 2
+5. go to 2
+
+
+The game has a set of bytes, which can be used in text: 0x04,0x0B,0x0C,0x0D,0x0F,0x12,0x7E,0x80..0x8B,0xA1,0xA3,0xA4,0xA5,0xB0..0xCD,0xD0,0xD6..0xDA. Please [inform me](https://github.com/romhack/hUninvited/issues) if you need wider range for text and I'll add charMap rebuild function to the tool
+
+Build:
+```
+$ cabal sandbox init
+$ cabal install -j
+```

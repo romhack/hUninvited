@@ -82,8 +82,12 @@ removeItemBytes (0x12:_:_:bs) = 0x12: removeItemBytes bs
 removeItemBytes (b:bs) = b: removeItemBytes bs
 
 buildIndexTable :: [Word8] -> IndexTable --find indexes of sorted charmap in game's charmap and output
-buildIndexTable input = map ((fromIntegral . fromJust) . flip elemIndex binaryCharMap) sortedCharMap
+buildIndexTable input = tbl $ map (flip elemIndex binaryCharMap) sortedCharMap
   where 
+    tbl [] = []
+    tbl (x:xs)
+      | isNothing x = error "Can't build index: use these bytes for text:\n0x04,0x0B,0x0C,0x0D,0x0F,0x12,0x7E,0x80..0x8B,0xA1,0xA3,0xA4,0xA5,0xB0..0xCD,0xD0,0xD6..0xDA"
+      | otherwise   = (fromIntegral.fromJust) x : tbl xs
     sortedFrequencies = sort $ histogram (removeItemBytes input)
     sortedCharMap= reverse $ map snd sortedFrequencies--extract only chars from max to min freq
 

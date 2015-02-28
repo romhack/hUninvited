@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                hUninvited
-version:             1.0.0.0
+version:             1.2.0.0
 synopsis:            NES Uninvited text tool
 -- description:         
 homepage:            https://github.com/romhack/hUninvited

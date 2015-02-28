@@ -65,7 +65,7 @@ main = do
   argv <- getArgs
   (opts, nonOpts) <- deforOpts argv
   when (optVersion opts) $ do
-    putStrLn "hUninvited. NES Uninvited text tool. Version 1.0"
+    putStrLn "hUninvited. NES Uninvited text tool. Version 1.2"
     exitSuccess
   when (optHelp opts) $ do
     putStrLn usage
