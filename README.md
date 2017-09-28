@@ -5,42 +5,34 @@ NES Uninvited text tool. Game uses Golomb coding for text. This tool can work wi
 
 Synopsis:
 ```
-huninvited [-d | -s | -i | -e] arguments
+huninvited [-d | -c | -k] fileName
 ```
   
 Description
 
-***-d, --decode*** input_file index_map_offset text_offset  - Decode one message from ROM at given offset
+***hUninivted -d*** <file>  Decompress script from given ROM file.
 
-***-s, --script*** input_file index_map_offset pointer_table_offset pointer_count text_base_offset - Batch decode script from ROM by pointer table
+***hUninivted -c*** <file>  Compress script and insert in given ROM file.
 
-***-i, --index*** input_file... - Build binary index table from given decoded binary files
-
-***-e, --encode*** input_file index_table pointer_table_start_RAM_address - Encode decoded binary file with given binary index table file
-
-***-o[FILE], --output[=FILE]*** - Output to binary FILE; if option is not specified, -d and -s are output to stdout
+***hUninivted -k*** <file>  Check given script file for excess length.
 
 ***-h, --help*** - Display help
 
 ***-v, --version*** - Output version information
 
-See additional files in [release](https://github.com/romhack/hUninvited/releases/latest) archive. Usage examples are in run.bat file. Recommended translation scheme:  
+See additional files in [release](https://github.com/romhack/hUninvited/releases/latest) archive. Recommended translation scheme:  
 
-1. run.bat decode  
-  
-2. modify decoded text groups  
-  
-3. run.bat encode
-  
-4. run.bat paste
-  
-5. go to 2
+1. run decompress.bat
 
+2. prepare encode.tbl and modify ROM graphics as you need
+  
+3. modify script text files and run check.bat for your convenience
 
-The game has a set of bytes, which can be used in text: 0x04,0x0B,0x0C,0x0D,0x0F,0x12,0x7E,0x80..0x8B,0xA1,0xA3,0xA4,0xA5,0xB0..0xCD,0xD0,0xD6..0xDA. Please [inform me](https://github.com/romhack/hUninvited/issues) if you need wider range for text and I'll add charMap rebuild function to the tool
+4. run compress.bat, check the result in emulator, modify text and press any key in cmd window to reinsert it.
+  
 
-Build:
-```
-$ cabal sandbox init
-$ cabal install -j
-```
+Tables are in Nightcrawler's table file standard. In short, $12=[item],lo,hi -control code with parameters, and /E0=[end]\n\n -end code  
+Script is autowrapped on 27th symbol. So original game just don't break line, if current line is broken on exactly 27th symbol.  
+But to eliminate your mistakes, I recommend running check.bat and recheck each line.  
+
+Build with [Haskell Stack](https://haskellstack.org) tool.
